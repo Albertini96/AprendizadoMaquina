@@ -73,3 +73,6 @@ def multMatrix(mat_b, mat_a):
                 ret[i][j] += mat_a[i][k] * mat_b[k][j]
                 
     return ret
+
+def getColumn(matrix, c):
+    return [row[c] for row in matrix]
