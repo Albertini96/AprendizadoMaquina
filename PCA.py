@@ -10,8 +10,13 @@ def bhaskara(a, b, c):
     
     delta = math.sqrt( math.pow(b,2) - (4*a*c))
     sub = 2*a
-    return [ ((-b + delta) / sub)  ,
+    return [((-b + delta) / sub)  ,
             ((-b - delta) / sub)]
+
+def s_cov(x, y):
+    if len(x) != len(y):
+        raise Exception('Vetores nao tem o mesmo tamanho')
+    return sum([x[i]*y[i] for i in range(len(x))])/(len(x)-1)
 
 #Find covariance between two vectors
 def cov(x, y):
@@ -65,8 +70,12 @@ def PCA(ds):
            norm = math.sqrt( math.pow(vec[0],2) + math.pow(vec[1],2))
            norm_eigen.append([ -(vec[1] / norm), (vec[0] / norm) ])
            
+        print('Eigenvalues', eigen_values)
+        print('Eigenvectors', norm_eigen)
+           
     else:
-        norm_eigen = LA.eig(cov)[1].tolist()
-        
+        print('Eigenvalues', LA.eig(cov)[0].tolist())
+        norm_eigen = LA.eig(cov)[1].tolist()      
+        print('Eigenvectors', norm_eigen)
         
     return norm_eigen
