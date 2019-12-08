@@ -2,6 +2,7 @@
 
 import pandas as pd
 import numpy as np
+from sklearn.datasets.samples_generator import make_blobs
 import matplotlib.pyplot as plt
 from sklearn import datasets
 from mpl_toolkits.mplot3d import Axes3D
@@ -18,6 +19,10 @@ root = '../Bases/'
 #ds = pd.read_excel(root + 'US_Census.xlsx').values.tolist()
 #ds = pd.read_excel(root + 'Books.xlsx').values.tolist()
 #ds = pd.read_excel(root + 'PCA_Example.xlsx').values.tolist()
+#ds = pd.read_excel(root + 'KMeans.xlsx').values
+
+#ds = pd.read_excel(root + 'Wholesale.xlsx').values
+ds = pd.read_excel(root + 'user_model.xlsx').values
 
 #data = datasets.load_iris()
 #ds = pd.DataFrame(data['data'], columns=data['feature_names'])
@@ -91,33 +96,49 @@ root = '../Bases/'
 # #Exercicio 3 - LDA
 # =============================================================================
 
-lda_data = LDA.fit(ds)
-
-x=lda_data[:, 0]
-y=lda_data[:, 1]
-classes = lda_data[:, 2]
-unique = list(set(classes))
-colors = [plt.cm.jet(float(i)/max(unique)) for i in unique]
-for i, u in enumerate(unique):
-    xi = [x[j] for j  in range(len(x)) if classes[j] == u]
-    yi = [y[j] for j  in range(len(x)) if classes[j] == u]
-    plt.scatter(xi, yi, c=colors[i], label=str(u))
-plt.legend()
-
-plt.show()
+#lda_data = LDA.fit(ds)
+#
+#x=lda_data[:, 0]
+#y=lda_data[:, 1]
+#classes = lda_data[:, 2]
+#unique = list(set(classes))
+#colors = [plt.cm.jet(float(i)/max(unique)) for i in unique]
+#for i, u in enumerate(unique):
+#    xi = [x[j] for j  in range(len(x)) if classes[j] == u]
+#    yi = [y[j] for j  in range(len(x)) if classes[j] == u]
+#    plt.scatter(xi, yi, c=colors[i], label=str(u))
+#plt.legend()
+#
+#plt.show()
 
 # =============================================================================
 # #Exercicio 4 - KMeans
 # =============================================================================
 
-#centroids = KMeans.KMeans(2)
+
+centers = [(-5, -5), (5, 5), (-4,4)]
+cluster_std = [1, 1.2, 1.0]
+
+X, y = make_blobs(n_samples=100, cluster_std=cluster_std, centers=centers, n_features=4, random_state=1)
+
+new_data, centroids = KMeans.KMeans(X, 4)
+
+plt.scatter(new_data[:, 0], new_data[:, 1], c=new_data[:, 2])
+plt.scatter(centroids[:, 0], centroids[:, 1], c='red')
+plt.show()
+
+# =============================================================================
+# #Exercicio 5 - Perceptron
+# =============================================================================
 
 
+# =============================================================================
+# #Exercicio 6 - Multi Layer Perceptrons
+# =============================================================================
 
-
-
-
-
+# =============================================================================
+# #Exercicio 7 - Convolutional Neural Networks
+# =============================================================================
 
 
 
