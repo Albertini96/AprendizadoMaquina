@@ -24,6 +24,7 @@ def get_clusters(centroids, k, ds):
         cluster.append(select_cluster)
     return cluster
 
+#Returns dataset with cluster appended on last collumn
 def KMeans(ds, k):  
     
     number_centroids = k

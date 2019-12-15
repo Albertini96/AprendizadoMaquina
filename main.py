@@ -11,6 +11,7 @@ import Regressor
 import PCA
 import LDA
 import KMeans
+import Perceptron
 
 root = '../Bases/'
 #ds = pd.read_excel(root + 'ShoeSize.xlsx').values.tolist()
@@ -20,9 +21,12 @@ root = '../Bases/'
 #ds = pd.read_excel(root + 'Books.xlsx').values.tolist()
 #ds = pd.read_excel(root + 'PCA_Example.xlsx').values.tolist()
 #ds = pd.read_excel(root + 'KMeans.xlsx').values
-
 #ds = pd.read_excel(root + 'Wholesale.xlsx').values
-ds = pd.read_excel(root + 'user_model.xlsx').values
+#ds = pd.read_excel(root + 'user_model.xlsx').values
+#ds = pd.read_excel(root + 'and.xlsx').values
+ds = pd.read_excel(root + 'or.xlsx').values
+#ds = pd.read_excel(root + 'xor.xlsx').values
+
 
 #data = datasets.load_iris()
 #ds = pd.DataFrame(data['data'], columns=data['feature_names'])
@@ -116,20 +120,23 @@ ds = pd.read_excel(root + 'user_model.xlsx').values
 # =============================================================================
 
 
-centers = [(-5, -5), (5, 5), (-4,4)]
-cluster_std = [1, 1.2, 1.0]
-
-X, y = make_blobs(n_samples=100, cluster_std=cluster_std, centers=centers, n_features=4, random_state=1)
-
-new_data, centroids = KMeans.KMeans(X, 4)
-
-plt.scatter(new_data[:, 0], new_data[:, 1], c=new_data[:, 2])
-plt.scatter(centroids[:, 0], centroids[:, 1], c='red')
-plt.show()
+#centers = [(-5, -5), (5, 5), (-4,4)]
+#cluster_std = [1, 1.2, 1.0]
+#
+#X, y = make_blobs(n_samples=100, cluster_std=cluster_std, centers=centers, n_features=4, random_state=1)
+#
+#new_data, centroids = KMeans.KMeans(X, 4)
+#
+#plt.scatter(new_data[:, 0], new_data[:, 1], c=new_data[:, 2])
+#plt.scatter(centroids[:, 0], centroids[:, 1], c='red')
+#plt.show()
 
 # =============================================================================
 # #Exercicio 5 - Perceptron
 # =============================================================================
+
+weights = Perceptron.fit(ds, 50, 0.1)
+#print(Perceptron.predict([0,1], weights))
 
 
 # =============================================================================
